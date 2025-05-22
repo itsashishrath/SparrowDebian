@@ -1,0 +1,15 @@
+Package: sparrow
+Version: 2.22.0
+Architecture: amd64
+Maintainer: sparrow
+Installed-Size: 35313
+Depends: libwebkit2gtk-4.1-0, libgtk-3-0
+Filename: debs/sparrow_2.22.0_amd64.deb
+Size: 15482194
+MD5sum: d90c5029db49ada0b284cf069c7d937c
+SHA1: 2b17e295e453792330f79527d83a66b2b66e1a4f
+SHA256: f6f6af2823e6186856a8938e7bcc91dcf3b8e73c13a366f19dd2c8ebc162de57
+Priority: optional
+Description: Sparrow
+ (none)
+
