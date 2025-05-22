@@ -18,6 +18,8 @@
   "scripts": {
     "desktop-start": "yarn workspace @sparrow/desktop tauri dev",
     "desktop-build": "yarn workspace @sparrow/desktop tauri build --debug",
+    "desktop-build-prod": "yarn workspace @sparrow/desktop tauri build",
+    "desktop-build-verbose": "yarn workspace @sparrow/desktop tauri build --debug --verbose",
     "desktop-build-mac-universal": "yarn workspace @sparrow/desktop tauri build --target universal-apple-darwin --debug --verbose",
     "web-start": "yarn workspace @sparrow/web dev",
     "web-build": "yarn workspace @sparrow/web build",

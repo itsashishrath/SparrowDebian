@@ -51,11 +51,15 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ],
-    "targets": "all",
+    "targets": "deb",
     "windows": {
       "wix": {
-        "fragmentPaths": ["./assets/DeepLinkRegistryEntries.wxs"],
-        "componentRefs": ["DeepLinkRegistryEntries"]
+        "fragmentPaths": [
+          "./assets/DeepLinkRegistryEntries.wxs"
+        ],
+        "componentRefs": [
+          "DeepLinkRegistryEntries"
+        ]
       }
     },
     "linux": {
@@ -103,9 +107,13 @@
     },
     "deep-link": {
       "mobile": [],
-      "desktop": []
+      "desktop": {
+        "schemes": [
+          "sparrow"
+        ]
+      }
     }
   },
   "productName": "Sparrow",
-  "version": "2.22.0"
+  "version": "2.23.0"
 }
