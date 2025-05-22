@@ -79,10 +79,15 @@ jobs:
           cp deb/sparrow_*.deb ../../../../../../debs/
           cd ../../../../../../
           dpkg-scanpackages debs /dev/null | sed 's|Filename: debs/|Filename: |' | tee debs/Packages | gzip -9c > debs/Packages.gz
+          
+      - name: Prepare publish directory
+        run: |
+          mkdir gh-pages-publish
+          cp -r debs gh-pages-publish/
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ vars.GH_TOKEN }}
-          publish_dir: .
+          publish_dir: ./gh-pages-publish
  
