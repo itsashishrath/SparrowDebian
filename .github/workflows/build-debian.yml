@@ -41,11 +41,18 @@ jobs:
         run: |
           curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
           sudo apt-get install -y nodejs
-
-      - name: Setup Yarn
+      - name: Install Yarn (Ubuntu 24.04 compatible)
         run: |
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo tee /etc/apt/trusted.gpg.d/yarn.gpg > /dev/null
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          # Create keyring directory if it doesn't exist
+          sudo mkdir -p /etc/apt/keyrings
+
+          # Download and store Yarn GPG key in the proper format
+          curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/yarn.gpg
+
+          # Add Yarn APT repo with signed-by directive
+          echo "deb [signed-by=/etc/apt/keyrings/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+          # Update and install Yarn
           sudo apt update
           sudo apt install -y yarn
 
