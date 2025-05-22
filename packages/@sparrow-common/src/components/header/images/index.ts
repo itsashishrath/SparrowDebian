@@ -1,1 +1,0 @@
-export {default as SparrowFilledLogo} from "./SparrowFilledLogo.svelte"
