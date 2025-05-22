@@ -1,0 +1,22 @@
+@import url("https://rsms.me/inter/inter.css"); /* Inter Font */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap"); /* JetBrains Mono Font */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@supports (font-variation-settings: normal) {
+  * {
+    font-family: InterVariable, sans-serif;
+  }
+}
+
+img,
+a {
+  user-drag: none; /* Standard syntax */
+  -webkit-user-drag: none; /* Safari and older versions of Chrome */
+}
