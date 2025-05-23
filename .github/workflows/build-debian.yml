@@ -58,12 +58,11 @@ jobs:
 
       - name: Inject .env for Desktop
         run: |
-          pwd
-          printf "%s\n" "${{ vars.DESKTOP_ENV_FILE }}" > apps/@sparrow-desktop/.env
+          printf "%s\n" "${{ secrets.DESKTOP_ENV_FILE }}" > apps/@sparrow-desktop/.env
 
-      - name: Inject .env for Web
+      - name: Inject .env for WEB
         run: |
-          printf "%s\n" "${{ vars.WEB_ENV_FILE }}" > apps/@sparrow-web/.env
+          printf "%s\n" "${{ secrets.WEB_ENV_FILE }}" > apps/@sparrow-web/.env
 
       - name: Verify and print Desktop .env
         run: |
@@ -76,6 +75,8 @@ jobs:
           echo "📍 Web .env location: $(realpath apps/@sparrow-web/.env)"
           echo "📦 Web .env contents:"
           cat apps/@sparrow-web/.env
+
+    
 
       - name: Install project dependencies
         run: yarn
