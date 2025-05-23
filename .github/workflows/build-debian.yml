@@ -68,14 +68,13 @@ jobs:
         run: |
           echo "📍 Desktop .env location: $(realpath apps/@sparrow-desktop/.env)"
           echo "📦 Desktop .env contents:"
-          cat apps/@sparrow-desktop/.env
+          cat /home/runner/work/SparrowDebian/SparrowDebian/apps/@sparrow-desktop/.env
 
       - name: Verify and print Web .env
         run: |
           echo "📍 Web .env location: $(realpath apps/@sparrow-web/.env)"
           echo "📦 Web .env contents:"
-          cat apps/@sparrow-web/.env
-
+          cat /home/runner/work/SparrowDebian/SparrowDebian/apps/@sparrow-web/.env
     
 
       - name: Install project dependencies
