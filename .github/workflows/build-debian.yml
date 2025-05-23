@@ -83,6 +83,13 @@ jobs:
           cd ../../../../../../
           dpkg-scanpackages debs /dev/null | sed 's|Filename: debs/|Filename: |' | tee debs/Packages | gzip -9c > debs/Packages.gz
           
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.SPARROW_PRIVATE_KEY }}" | gpg --batch --import
+          echo "use-agent" >> ~/.gnupg/gpg.conf
+          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+          echo "${{ secrets.SPARROW_PASSPHRASE }}" | gpg --batch --yes --passphrase-fd 0 --edit-key ${{ vars.SPARROW_PUB_KEY }} trust quit
+
       - name: Prepare publish directory
         run: |
           mkdir gh-pages-publish
@@ -103,6 +110,7 @@ jobs:
           gpg --default-key "${{ vars.SPARROW_PUB_KEY }}" --clearsign -o InRelease Release
 
           cd ..
+
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
