@@ -5,10 +5,10 @@ Maintainer: sparrow
 Installed-Size: 436506
 Depends: libwebkit2gtk-4.1-0, libgtk-3-0
 Filename: sparrow_2.23.0_amd64.deb
-Size: 104381892
-MD5sum: 35b42209abae5ebae169ff5ba85a84d0
-SHA1: 4528fb3e0f87f3689c321d004d716ae1749d5ac8
-SHA256: 8df1513ad9d1cf8879e9c2b655b2d5b88cc00ab6ac57b729bf1e26d5d867e864
+Size: 104382592
+MD5sum: 4803f45097abddf4672fd377ca55d36a
+SHA1: 55ee35beeae080932eba8ef1b7355f1a7ed9dfc9
+SHA256: 95c04a50c25e0ba19239b67ee3a7f84f04dda9835241b6e483870debd8de2282
 Priority: optional
 Description: Sparrow
  (none)
