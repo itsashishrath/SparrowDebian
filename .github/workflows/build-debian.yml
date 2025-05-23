@@ -58,11 +58,11 @@ jobs:
 
       - name: Inject .env for Desktop
         run: |
-          echo "${{ vars.DESKTOP_ENV_FILE }}" > apps/@sparrow-desktop/.env
+          printf "%s\n" "${{ vars.DESKTOP_ENV_FILE }}" > apps/@sparrow-desktop/.env
 
-      - name: Inject .env for WEB
+      - name: Inject .env for Web
         run: |
-          echo "${{ vars.WEB_ENV_FILE }}" > apps/@sparrow-web/.env
+          printf "%s\n" "${{ vars.WEB_ENV_FILE }}" > apps/@sparrow-web/.env
 
       - name: Verify and print Desktop .env
         run: |
