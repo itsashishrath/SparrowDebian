@@ -58,6 +58,7 @@ jobs:
 
       - name: Inject .env for Desktop
         run: |
+          pwd
           printf "%s\n" "${{ vars.DESKTOP_ENV_FILE }}" > apps/@sparrow-desktop/.env
 
       - name: Inject .env for Web
