@@ -116,5 +116,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ vars.GH_TOKEN }}
-          publish_dir: gh-pages-publish
- 
+          publish_dir: gh-pages-publis
