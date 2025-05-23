@@ -58,25 +58,23 @@ jobs:
 
       - name: Inject .env for Desktop
         run: |
-          printf "%s\n" "${{ secrets.DESKTOP_ENV_FILE }}"
-      # > apps/@sparrow-desktop/.env
+          echo '${{ secrets.DESKTOP_ENV_FILE }}' > apps/@sparrow-desktop/.env
 
       - name: Inject .env for WEB
         run: |
-          printf "%s\n" "${{ secrets.WEB_ENV_FILE }}" 
-      # > apps/@sparrow-web/.env
+          echo '${{ secrets.WEB_ENV_FILE }}' > apps/@sparrow-web/.env
+          
+      - name: Inject .env for Desktop
+        run: |
+          cat > apps/@sparrow-desktop/.env << 'EOF'
+          ${{ secrets.DESKTOP_ENV_FILE }}
+          EOF
 
-      # - name: Verify and print Desktop .env
-      #   run: |
-      #     echo "📍 Desktop .env location: $(realpath apps/@sparrow-desktop/.env)"
-      #     echo "📦 Desktop .env contents:"
-      #     cat /home/runner/work/SparrowDebian/SparrowDebian/apps/@sparrow-desktop/.env
-
-      # - name: Verify and print Web .env
-      #   run: |
-      #     echo "📍 Web .env location: $(realpath apps/@sparrow-web/.env)"
-      #     echo "📦 Web .env contents:"
-      #     cat /home/runner/work/SparrowDebian/SparrowDebian/apps/@sparrow-web/.env
+      - name: Inject .env for WEB
+        run: |
+          cat > apps/@sparrow-web/.env << 'EOF'
+          ${{ secrets.WEB_ENV_FILE }}
+          EOF
     
 
       - name: Install project dependencies
