@@ -88,7 +88,6 @@ jobs:
           echo "${{ secrets.SPARROW_PRIVATE_KEY }}" | gpg --batch --import
           echo "use-agent" >> ~/.gnupg/gpg.conf
           echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          echo "${{ secrets.SPARROW_PASSPHRASE }}" | gpg --batch --yes --passphrase-fd 0 --edit-key ${{ vars.SPARROW_PUB_KEY }} trust quit
 
       - name: Prepare publish directory
         run: |
@@ -106,14 +105,16 @@ jobs:
           Description: Sparrow APT repository
           EOF
 
-          gpg --default-key "${{ vars.SPARROW_PUB_KEY }}" -abs -o Release.gpg Release
-          gpg --default-key "${{ vars.SPARROW_PUB_KEY }}" --clearsign -o InRelease Release
+          gpg --batch --yes --pinentry-mode loopback --passphrase "${{ secrets.SPARROW_PASSPHRASE }}" \
+            --default-key "${{ vars.SPARROW_PUB_KEY }}" -abs -o Release.gpg Release
+
+          gpg --batch --yes --pinentry-mode loopback --passphrase "${{ secrets.SPARROW_PASSPHRASE }}" \
+            --default-key "${{ vars.SPARROW_PUB_KEY }}" --clearsign -o InRelease Release
 
           cd ..
-
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ vars.GH_TOKEN }}
-          publish_dir: gh-pages-publis
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: gh-pages-publish
