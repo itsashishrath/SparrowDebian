@@ -55,14 +55,6 @@ jobs:
           # Update and install Yarn
           sudo apt update
           sudo apt install -y yarn
-
-      - name: Inject .env for Desktop
-        run: |
-          echo '${{ secrets.DESKTOP_ENV_FILE }}' > apps/@sparrow-desktop/.env
-
-      - name: Inject .env for WEB
-        run: |
-          echo '${{ secrets.WEB_ENV_FILE }}' > apps/@sparrow-web/.env
           
       - name: Inject .env for Desktop
         run: |
