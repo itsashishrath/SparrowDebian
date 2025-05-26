@@ -78,11 +78,16 @@ jobs:
       - name: Generate DEB metadata
         working-directory: apps/@sparrow-desktop/src-tauri/target/release/bundle
         run: |
-          mkdir -p ../../../../../../debs
-          cp deb/sparrow_*.deb ../../../../../../debs/
-          cd ../../../../../../
-          dpkg-scanpackages debs /dev/null | sed 's|Filename: debs/|Filename: |' | tee debs/Packages | gzip -9c > debs/Packages.gz
-          
+          mkdir -p ../../../../../../publishDir/pool/stable/main/binary-amd64
+          cp deb/sparrow_*.deb ../../../../../../publishDir/pool/stable/main/binary-amd64/
+          cd ../../../../../../publishDir
+          pwd
+          sudo apt install tree
+          tree
+          dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
+          gzip -k dists/stable/main/binary-amd64/Packages
+
+      
       - name: Import GPG key
         run: |
           echo "${{ secrets.SPARROW_PRIVATE_KEY }}" | gpg --batch --import
@@ -91,19 +96,20 @@ jobs:
 
       - name: Prepare publish directory
         run: |
-          mkdir gh-pages-publish
-          cp -r debs gh-pages-publish/
-          cd gh-pages-publish
-          cat > Release <<EOF
-          Origin: Sparrow
-          Label: Sparrow
-          Suite: stable
-          Version: 1.0
-          Codename: stable
-          Architectures: amd64
-          Components: main
-          Description: Sparrow APT repository
+          cd dist/stable/ 
+          cat > apt-release.conf <<EOF
+          APT::FTPArchive::Release {
+            Origin "Sparrow";
+            Label "Sparrow";
+            Suite "stable";
+            Codename "stable";
+            Architectures "amd64";
+            Components "main";
+            Description "Sparrow Debian Repository";
+          };
           EOF
+
+          apt-ftparchive -c ../../apt-release.conf release . > Release
 
           gpg --batch --yes --pinentry-mode loopback --passphrase "${{ secrets.SPARROW_PASSPHRASE }}" \
             --default-key "${{ vars.SPARROW_PUB_KEY }}" -abs -o Release.gpg Release
@@ -112,9 +118,10 @@ jobs:
             --default-key "${{ vars.SPARROW_PUB_KEY }}" --clearsign -o InRelease Release
 
           cd ..
+          
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: gh-pages-publish
+          publish_dir: publishDir
