@@ -142,11 +142,11 @@ jobs:
           gpg --armor --export ${{ vars.SPARROW_PUB_KEY }} > sparrow-repo-key.gpg
 
           cd ..
-          pwd
+          mv publishDir gh-pages
           
 
       - name: Upload to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: publishDir
+          github_token: ${{ vars.GH_TOKEN }}
+          publish_dir: gh-pages
