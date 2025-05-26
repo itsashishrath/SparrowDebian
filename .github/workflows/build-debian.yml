@@ -142,6 +142,7 @@ jobs:
           gpg --armor --export ${{ vars.SPARROW_PUB_KEY }} > sparrow-repo-key.gpg
 
           cd ..
+          pwd
           
 
       - name: Upload to GitHub Pages
