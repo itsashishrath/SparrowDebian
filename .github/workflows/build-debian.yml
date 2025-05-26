@@ -92,8 +92,7 @@ jobs:
         run: |
           git clone https://github.com/itsashishrath/toBeDeleted.git
           mkdir -p publishDir/pool/stable/main/binary-amd64
-          tree
-          cp toBeDeleted/sparrow_2.22.0_amd64.deb publishDir/pool/stable/main/binary-amd64
+          ls toBedeleted/
           cp toBedeleted/*.deb publishDir/pool/stable/main/binary-amd64/
           cd publishDir
           pwd
