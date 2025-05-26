@@ -110,7 +110,7 @@ jobs:
       - name: Prepare publish directory
         run: |
           tree
-          cd dists/stable
+          cd publishDir/dists/stable
           cat > apt-release.conf <<EOF
           APT::FTPArchive::Release {
             Origin "Sparrow";
