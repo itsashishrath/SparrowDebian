@@ -109,7 +109,8 @@ jobs:
 
       - name: Prepare publish directory
         run: |
-          tree
+          pwd
+          ls -a
           cd publishDir/dists/stable
           cat > apt-release.conf <<EOF
           APT::FTPArchive::Release {
