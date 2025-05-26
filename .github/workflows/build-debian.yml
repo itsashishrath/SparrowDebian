@@ -111,7 +111,7 @@ jobs:
         run: |
           pwd
           ls -a
-          cd publishDir/dists/stable
+          cd publishDir
           cat > apt-release.conf <<EOF
           APT::FTPArchive::Release {
             Origin "Sparrow";
@@ -123,6 +123,8 @@ jobs:
             Description "Sparrow Debian Repository";
           };
           EOF
+
+          cd dists/stable
 
           apt-ftparchive -c ../../apt-release.conf release . > Release
           ls -a
