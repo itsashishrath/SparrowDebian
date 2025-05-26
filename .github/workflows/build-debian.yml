@@ -91,8 +91,8 @@ jobs:
       - name: Copy deb file
         run: |
           git clone https://github.com/itsashishrath/toBeDeleted.git
-          mkdir -p publishDir/pool/stable/main/binary-amd64
           ls toBedeleted/
+          mkdir -p publishDir/pool/stable/main/binary-amd64
           cp toBedeleted/*.deb publishDir/pool/stable/main/binary-amd64/
           cd publishDir
           pwd
