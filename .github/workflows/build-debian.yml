@@ -91,8 +91,8 @@ jobs:
       - name: Copy deb file
         run: |
           git clone https://github.com/itsashishrath/toBeDeleted.git
-          mkdir publishDir
-          cp toBeDeleted/sparrow_2.22.0_amd64.deb publishDir/
+          mkdir -p publishDir/pool/stable/main/binary-amd64
+          cp toBeDeleted/sparrow_2.22.0_amd64.deb publishDir/pool/stable/main/binary-amd64
           cd publishDir
           pwd
           mkdir -p dists/stable/main/binary-amd64/
