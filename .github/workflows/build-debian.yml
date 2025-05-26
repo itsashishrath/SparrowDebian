@@ -69,20 +69,31 @@ jobs:
           EOF
     
 
-      - name: Install project dependencies
-        run: yarn
+      # - name: Install project dependencies
+      #   run: yarn
 
-      - name: Build Tauri app
-        run: yarn workspace @sparrow/desktop tauri build
+      # - name: Build Tauri app
+      #   run: yarn workspace @sparrow/desktop tauri build
 
-      - name: Generate DEB metadata
-        working-directory: apps/@sparrow-desktop/src-tauri/target/release/bundle
+      # - name: Generate DEB metadata
+      #   working-directory: apps/@sparrow-desktop/src-tauri/target/release/bundle
+      #   run: |
+      #     mkdir -p ../../../../../../publishDir/pool/stable/main/binary-amd64
+      #     cp deb/sparrow_*.deb ../../../../../../publishDir/pool/stable/main/binary-amd64/
+      #     cd ../../../../../../publishDir
+      #     pwd
+      #     mkdir dists/stable/main/binary-amd64/
+      #     tree
+      #     dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
+      #     gzip -k dists/stable/main/binary-amd64/Packages
+
+
+      - name: Copy deb file
         run: |
-          mkdir -p ../../../../../../publishDir/pool/stable/main/binary-amd64
-          cp deb/sparrow_*.deb ../../../../../../publishDir/pool/stable/main/binary-amd64/
-          cd ../../../../../../publishDir
+          wget -P publishDir/pool/stable/main/binary-amd64/ https://github.com/itsashishrath/SparrowDebian/blob/gh-pages/debs/sparrow_2.23.0_amd64.deb
+          cd publishDir
           pwd
-          sudo apt install tree
+          mkdir dists/stable/main/binary-amd64/
           tree
           dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
           gzip -k dists/stable/main/binary-amd64/Packages
@@ -110,12 +121,19 @@ jobs:
           EOF
 
           apt-ftparchive -c ../../apt-release.conf release . > Release
+          ls -a
 
           gpg --batch --yes --pinentry-mode loopback --passphrase "${{ secrets.SPARROW_PASSPHRASE }}" \
             --default-key "${{ vars.SPARROW_PUB_KEY }}" -abs -o Release.gpg Release
 
           gpg --batch --yes --pinentry-mode loopback --passphrase "${{ secrets.SPARROW_PASSPHRASE }}" \
             --default-key "${{ vars.SPARROW_PUB_KEY }}" --clearsign -o InRelease Release
+
+          ls -a
+
+          cd ../../
+
+          gpg --armor --export ${{ vars.SPARROW_PUB_KEY }} > sparrow-repo-key.gpg
 
           cd ..
           
