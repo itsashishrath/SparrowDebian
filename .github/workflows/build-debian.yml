@@ -27,34 +27,34 @@ jobs:
           toolchain: 1.82.0
           override: true
 
-      # - name: Install dependencies
-      #   run: |
-      #     sudo apt update
-      #     sudo apt install -y \
-      #       pkg-config libssl-dev libcairo2-dev \
-      #       libwebkit2gtk-4.1-dev build-essential \
-      #       curl wget file libxdo-dev \
-      #       libayatana-appindicator3-dev librsvg2-dev \
-      #       gnupg software-properties-common
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            pkg-config libssl-dev libcairo2-dev \
+            libwebkit2gtk-4.1-dev build-essential \
+            curl wget file libxdo-dev \
+            libayatana-appindicator3-dev librsvg2-dev \
+            gnupg software-properties-common
 
-      # - name: Setup Node.js 22
-      #   run: |
-      #     curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-      #     sudo apt-get install -y nodejs
-      # - name: Install Yarn (Ubuntu 24.04 compatible)
-      #   run: |
-      #     # Create keyring directory if it doesn't exist
-      #     sudo mkdir -p /etc/apt/keyrings
+      - name: Setup Node.js 22
+        run: |
+          curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+      - name: Install Yarn (Ubuntu 24.04 compatible)
+        run: |
+          # Create keyring directory if it doesn't exist
+          sudo mkdir -p /etc/apt/keyrings
 
-      #     # Download and store Yarn GPG key in the proper format
-      #     curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/yarn.gpg
+          # Download and store Yarn GPG key in the proper format
+          curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/yarn.gpg
 
-      #     # Add Yarn APT repo with signed-by directive
-      #     echo "deb [signed-by=/etc/apt/keyrings/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          # Add Yarn APT repo with signed-by directive
+          echo "deb [signed-by=/etc/apt/keyrings/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
-      #     # Update and install Yarn
-      #     sudo apt update
-      #     sudo apt install -y yarn
+          # Update and install Yarn
+          sudo apt update
+          sudo apt install -y yarn
           
       - name: Inject .env for Desktop
         run: |
@@ -69,34 +69,35 @@ jobs:
           EOF
     
 
-      # - name: Install project dependencies
-      #   run: yarn
+      - name: Install project dependencies
+        run: yarn
 
-      # - name: Build Tauri app
-      #   run: yarn workspace @sparrow/desktop tauri build
+      - name: Build Tauri app
+        run: yarn workspace @sparrow/desktop tauri build
 
-      # - name: Generate DEB metadata
-      #   working-directory: apps/@sparrow-desktop/src-tauri/target/release/bundle
-      #   run: |
-      #     mkdir -p ../../../../../../publishDir/pool/stable/main/binary-amd64
-      #     cp deb/sparrow_*.deb ../../../../../../publishDir/pool/stable/main/binary-amd64/
-      #     cd ../../../../../../publishDir
-      #     pwd
-      #     mkdir dists/stable/main/binary-amd64/
-      #     tree
-      #     dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
-      #     gzip -k dists/stable/main/binary-amd64/Packages
-
-
-      - name: Copy deb file
+      - name: Generate DEB metadata
+        working-directory: apps/@sparrow-desktop/src-tauri/target/release/bundle
         run: |
-          wget -P publishDir/pool/stable/main/binary-amd64/ https://github.com/itsashishrath/SparrowDebian/blob/gh-pages/debs/sparrow_2.23.0_amd64.deb
-          cd publishDir
+          mkdir -p ../../../../../../publishDir/pool/stable/main/binary-amd64
+          cp deb/sparrow_*.deb ../../../../../../publishDir/pool/stable/main/binary-amd64/
+          cd ../../../../../../publishDir
           pwd
           mkdir -p dists/stable/main/binary-amd64/
           tree
           dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
           gzip -k dists/stable/main/binary-amd64/Packages
+
+
+      # - name: Copy deb file
+      #   run: |
+      #     git clone 
+      #     wget -P publishDir/pool/stable/main/binary-amd64/ https://github.com/itsashishrath/SparrowDebian/blob/gh-pages/debs/sparrow_2.23.0_amd64.deb
+      #     cd publishDir
+      #     pwd
+      #     mkdir -p dists/stable/main/binary-amd64/
+      #     tree
+      #     dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
+      #     gzip -k dists/stable/main/binary-amd64/Packages
 
       
       - name: Import GPG key
