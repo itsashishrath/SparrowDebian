@@ -1,24 +1,24 @@
 Architectures: amd64
 Codename: stable
 Components: main
-Date: Mon, 26 May 2025 14:32:22 +0000
+Date: Tue, 27 May 2025 06:30:12 +0000
 Description: Sparrow Debian Repository
 Label: Sparrow
 Origin: Sparrow
 Suite: stable
 MD5Sum:
- 1ca61433f5eb4559fa112501e0742b42              177 Release
- 6e4ec32afe1971a164495288908f9476              852 main/binary-amd64/Packages
- 963d6fb856a1bf8d54eb1720c2dc0955              456 main/binary-amd64/Packages.gz
+ ef2fdf074631a129eadd1fb4819b28d4              177 Release
+ 29dc94311901313e02116f167a8c6efc              426 main/binary-amd64/Packages
+ b2d3628ffd978d212cc7f0d00e97ceb5              333 main/binary-amd64/Packages.gz
 SHA1:
- 1f1fa3b4151ea8f2a0b349aa8cb8c97a2c4f58d2              177 Release
- 4f3c164988566ae5ddac85edee551f3c236c2df2              852 main/binary-amd64/Packages
- a22f29986c2c19eacfdbc96e31418404d9e8af0e              456 main/binary-amd64/Packages.gz
+ 84da127d27dc3b5ca434780700fd3468e5789312              177 Release
+ a9acc9a8238673dcf86a2eaf288eec983886112f              426 main/binary-amd64/Packages
+ c0dfc9211781f301b227966b7d7ec5b81f4c7f6f              333 main/binary-amd64/Packages.gz
 SHA256:
- b77d5c96677b797ec9f125f6f7c387a78fa7bac1ab9408f5b065a8d8d9ebfe28              177 Release
- c285235c870034340e371445fe552b1e73876ed637557e3c0bf88e9d68fafdb4              852 main/binary-amd64/Packages
- 3f8c2550ca97b2499910b7509a3a6f4aa485621d5a848e9edaec311e68891ee3              456 main/binary-amd64/Packages.gz
+ bb5b7e37c68b1562be40911c2fb6301fbf6f4f1c3921c092fb7b8793c813fd8a              177 Release
+ e00f9e034b7e14632d31a43d06575ac7704c8c878561924dc8176c8fc79eb5d1              426 main/binary-amd64/Packages
+ 6fd756cc6df33b1842af84e8984a609a44af71447fdaede96cc6bd95a295d594              333 main/binary-amd64/Packages.gz
 SHA512:
- 511b662119dc82fbdfb4c0b652d722813b53d1adcb71de25f4da5e5a01a3df2704b64b807212b9be1ee7999a03b3505d3ea352c1aa2a2ad3b0350de85b27f59d              177 Release
- 8930ce3a29e1f779488e173ff75307aa326e65a29092f04dbfde602ac698c08c6ab5827bc8f5c50862b714641a5bf29b8628261badfe296a49d7f7d1400f41b8              852 main/binary-amd64/Packages
- b1471c4712f3cfb1481ec338bd12fe199d107a6093c7face21301e5a8c44bf2cd535674abea600853bf80644c296c7633909e9d2fb97147d228f0cef99cee49b              456 main/binary-amd64/Packages.gz
+ e9829f6c54d6da7bc598671c5e13c97b460702eb729e30935a995e09387769a56313ab3eab236a5b8406f7d1420418312fedd3cb166e91ef3b5006d7cee8d751              177 Release
+ ff95728cb97ae23812290b5b0805ba7845477b746976f1593abf9e01ff1dfc36aaf1de951739e4996302c68e386030b74554b92f7dd26308282eced7c0b02922              426 main/binary-amd64/Packages
+ e5bfdec8291cbb89b7a0026967230f350103511a27db281db23d4c8f3af594f1478d07a225a91821e985705135098317f0ae3637dfcdad28f67b3bb3ee1d2740              333 main/binary-amd64/Packages.gz
