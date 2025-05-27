@@ -86,21 +86,6 @@ jobs:
           tree
           dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
           gzip -k dists/stable/main/binary-amd64/Packages
-
-
-      # - name: Copy deb file
-      #   run: |
-      #     git clone https://github.com/itsashishrath/toBeDeleted.git
-      #     ls toBeDeleted/
-      #     mkdir -p publishDir/pool/stable/main/binary-amd64
-      #     cp toBeDeleted/*.deb publishDir/pool/stable/main/binary-amd64/
-      #     cd publishDir
-      #     pwd
-      #     mkdir -p dists/stable/main/binary-amd64/
-      #     tree
-      #     dpkg-scanpackages -m pool/stable/main/binary-amd64 /dev/null > dists/stable/main/binary-amd64/Packages
-      #     gzip -k dists/stable/main/binary-amd64/Packages
-
       
       - name: Import GPG key
         run: |
