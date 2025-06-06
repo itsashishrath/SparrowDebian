@@ -59,12 +59,16 @@ jobs:
           
       - name: Inject .env for Desktop
         run: |
+          pwd
+          ls
           cat > apps/@sparrow-desktop/.env << 'EOF'
           ${{ secrets.DESKTOP_ENV_FILE }}
           EOF
 
       - name: Inject .env for WEB
         run: |
+          pwd
+          ls
           cat > apps/@sparrow-web/.env << 'EOF'
           ${{ secrets.WEB_ENV_FILE }}
           EOF
