@@ -18,7 +18,7 @@ jobs:
       TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repo-
         uses: actions/checkout@v3
 
       - name: Setup Rust 1.82.0
